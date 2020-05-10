@@ -36,7 +36,7 @@ $(document).ready(function){
   });
 
   $(".portfolio img").hover(function(){
-    $(".col-md-3 img").addClass("image");
+    $(".col-sm-3 img").addClass("image");
     $(".project-name").show();
   });
 
