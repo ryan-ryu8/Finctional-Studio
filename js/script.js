@@ -1,70 +1,51 @@
-var customerMessage=[];
-function showCustomerMessage(){
-  var name=document.getElementById("name").value;
-  var email=document.getElementById("email").value;
-  var message=document.getElementById("textarea").value;
+$(document).ready(function() {
 
-  if(name && email && message){
-    customerMessage.push(name, email, message);
-    return name;
-  }
-}
+  $('#portfolio span').addClass("hide");
+  $('#portfolio .doings').hover(function() {
 
-$(document).ready(function){
-  $(window).on("load",function(){
-    loaderFadeOutTime= 1000;
-    function hideLoader=(){
-      var loader=$('.loader');
-      loader.fadeOut(loaderFadeOutTime);
+    $(this).find('span').removeClass('hide');
+    $(this).find('.doings').addClass('imageEffect');
+  }, function() {
+
+    $(this).find('span').addClass('hide');
+    $(this).find('.doings').removeClass('imageEffect');
+  });
+
+  $(".first").click(function() {
+    $(".illustration1").toggle(500);
+    $(".details1").toggle(500);
+  });
+  $(".second").click(function() {
+    $(".illustration2").toggle(500);
+    $(".details2").toggle(500);
+  });
+  $(".third").click(function() {
+    $(".illustration3").toggle(500);
+    $(".details3").toggle(500);
+  });
+  //Submission Form
+  $('#submit').submit(function(event) {
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var message = $('#message').val();
+    if (name == "" || email == "" || message == "") {
+      $("#message").text("Please fill in all the fields with correct data.");
+      $('#message').removeClass("success");
+      $('#message').addClass("failed");
+    } else {
+      $("#message").text("Thank you " + name + ".<br>Your message has been successfully submitted.");
+      $('#message').removeClass("failed");
+      $('#message').addClass("success");
     }
-    hideLoader();
-  });
-
-  $(".design-initially-showing").click(function(){
-    $(".design-initially-hidden").slideToggle();
-    $(".design-initially-showing").slideToggle();
-  });
-
-  $(".dev-initially-showing").click(function(){
-    $(".dev-initially-hidden").slideToggle();
-    $(".dev-initially-showing").slideToggle();
-  });
-
-  $(".product-initially-showing").click(function(){
-    $(".product-initially-hidden").slideToggle();
-    $(".product-initially-showing").slideToggle();
-  });
-
-  $(".portfolio img").hover(function(){
-    $(".col-sm-3 img").addClass("image");
-    $(".project-name").show();
-  });
-
-  $("#button").click(function(){
     event.preventDefault();
   });
-
-$("#button").click(function(){
-  if (showCustomerMessage()){
-    $("#message-alert").text("Hey" + showCustomerMessage() + "Thanks for reaching out, a response will soon be made.");
-    $("#message-alert").addClass("alert-successful");
-    $("#message-alert").removeClass("alert-dismiss");
-    $("#message-alert").show();
-  }
-  else{
-    $("#message-alert").text("Fill in all fields as required please..");
-    $("#message-alert").addClass("alert-successful");
-    $("#message-alert").removeClass("alert-dismiss");
-    $("#message-alert").show();
-  }
-});
-
-  $("button").on("click",funtion(){
-    alertFadeOutTime = 3000;
-    function hideAlert(){
-      var messageAlert=$('#message-alert');
-      messageAlert.fadeOut(alertFadeOutTime);
-    }
-    hideAlert();
+  
+  $(function() {
+    $('a[href*=#]').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top
+      }, 300, 'linear');
+    });
   });
-}
+});
