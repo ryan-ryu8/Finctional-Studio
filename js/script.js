@@ -23,7 +23,7 @@ $(document).ready(function() {
     $(".illustration3").toggle(500);
     $(".details3").toggle(500);
   });
-  //Submission Form
+ 
   $('#submit').submit(function(event) {
     var name = $('#name').val();
     var email = $('#email').val();
